@@ -1,7 +1,8 @@
 {
   "name": "crowdcube_frontend",
   "version": "1.0.0",
-  "main": "index.html",
+  "main": "app/index.jsx",
+  "author": "karim",
   "license": "MIT",
   "scripts": {
     "build": "webpack --progress --profile --colors --display-error-details",
@@ -27,7 +28,17 @@
     "webpack-dev-server": "^2.9.4"
   },
   "dependencies": {
+    "css-loader": "^0.28.7",
+    "immutable": "^3.8.2",
+    "node-sass": "^4.6.0",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-immutable": "^4.0.0",
+    "redux-observable": "^0.17.0",
+    "reselect": "^3.0.1",
+    "rxjs": "^5.5.2"
   }
 }
