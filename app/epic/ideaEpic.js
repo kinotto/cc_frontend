@@ -12,7 +12,7 @@ const fetchIdeas = action$ => {
   return action$
     .ofType(FETCH_IDEAS_REQUEST)
     .switchMap(() => {
-      return ajax({'url': API.FETCH_IDEAS, 'method': 'GET'})
+      return ajax({'url': API.FETCH_IDEAS, 'crossDomain': true})
         .map(resp => {
           return FetchIdeasResponse(resp);
         });
