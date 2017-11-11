@@ -1,11 +1,10 @@
-import {Map} from 'immutable';
+import {List} from 'immutable';
 import {FETCH_IDEAS_RESPONSE} from '../actions';
 
-export const ideas = (state = Map(), action) => {
+export const ideas = (state = List(), action) => {
   switch (action.type) {
   case FETCH_IDEAS_RESPONSE: {
-    return state
-      .set('ideas', action.payload);
+    return List(action.payload);
   }
   default:
     return state;

@@ -14,7 +14,7 @@ const fetchIdeas = action$ => {
     .switchMap(() => {
       return ajax({'url': API.FETCH_IDEAS, 'crossDomain': true})
         .map(resp => {
-          return FetchIdeasResponse(resp);
+          return FetchIdeasResponse(resp.response);
         });
     });
 };

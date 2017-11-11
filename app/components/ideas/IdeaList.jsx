@@ -12,8 +12,12 @@ class IdeaList extends Component {
   }
   render() {
     return (
-      <div>
-        <IdeaTile/>
+      <div className="ideas">
+        {
+          this.props.ideas.map(
+            idea => <IdeaTile key={Math.random() * 100} idea={idea} />
+          )
+        }
       </div>
     );
   }
