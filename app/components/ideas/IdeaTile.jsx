@@ -4,14 +4,17 @@ import PropTypes from 'prop-types';
 const IdeaTile = ({idea}) => {
   let percentageFunded = (idea.raised / idea.target * 100).toFixed(0);
   return (
-    <div className="card card--big" >
+    <div className="card card--big" onClick={() => window.open(idea.page, '_self')}>
       {
         percentageFunded >= 100
           ? <span className="card__overfunded">overfunded</span>
           : ''
       }
-
-      <img className="card__star" src="../../../images/star.png"/>
+      <img
+        className="card__star"
+        src="../../../images/star.png"
+        onClick={() => window.open('https://www.crowdcube.com/login?redirect_to=aHR0cHM6Ly93d3cuY3Jvd2RjdWJlLmNvbS9pbnZlc3RtZW50cw%3D%3D', '_self')}
+      />
       <div className="card__image" style={{'backgroundImage': `url( "${idea.image}" )`}} />
       <h2 className="card__title">{idea.title}</h2>
       <h3 className="card__daysLeft">{idea.daysLeft} days left</h3>

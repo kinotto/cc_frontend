@@ -1,0 +1,48 @@
+.navbar-default{
+  background-color: white;
+  padding: 10px;
+
+  .navbar-brand{
+    position: relative;
+    img{
+      position: absolute;
+      top: 0;
+      width: 200px;
+      height: 60px;
+    }
+  }
+  .navbar-right{
+    a{
+      cursor: pointer;
+      padding-top: 5px;
+      margin-top: 16px;
+      &.current{
+        padding: 7px;
+        margin-top: 12px;
+        border: 2px solid #29383c;
+        border-radius: 3px;
+      }
+      &.current:hover{
+        background: #29383c;
+        color: #fff;
+      }
+      &.join{
+        color: white;
+        border-radius: 2px;
+        background-color: #508a00;
+        border: 2px solid #508a00;
+        padding: 8px 12px;
+        margin-top: 14px;
+      }
+      &.join:hover, &.join:visited, &.join:focus{
+        color: white;
+        background-color: #508a00;
+        border: 2px solid #508a00;
+      }
+    }
+
+  }
+  .navbar-toggle{
+    margin-top: 17px;
+  }
+}

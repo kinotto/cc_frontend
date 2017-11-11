@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PORT = process.env.PORT || 3003;
+
 module.exports = {
     entry: './app/index.jsx',
     output: {
@@ -64,6 +65,10 @@ module.exports = {
         new ExtractTextPlugin({
             filename: 'styles.css',
             allChunks: true
+        }),
+        new webpack.ProvidePlugin({
+          $: "jquery",
+          jQuery: "jquery"
         })
     ]
 }
