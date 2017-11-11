@@ -103,7 +103,7 @@
     background: #77b13b;
     color: #fff;
     font-size: .65em;
-    font-weight: 700;
+    font-weight: 500;
     left: -168.5px;
     position: absolute;
     text-align: center;
@@ -165,8 +165,6 @@
   &__footer {
     /*aggiunto in flex per allineare bottoni figli*/
     display: flex;
-    //align-items: center;
-    justify-content: space-between;
     flex-direction: column;
     user-select: none;
     position: absolute;
@@ -186,7 +184,8 @@
 
     &--target{
       padding-left: 16px;
-      font-weight: 600;
+      font-weight: 500;
+      flex: .3;
     }
     &--progress{
       display: flex;
@@ -203,6 +202,7 @@
       }
     }
     &--results{
+      flex: 1;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -215,7 +215,7 @@
         box-shadow: 1px 0 0 #e4e4e4;
         padding: 0 30px;
         p{
-          font-weight: 600;
+          font-weight: 500;
           margin-bottom: 10px;
         }
         span{
