@@ -14,11 +14,11 @@ const IdeaTile = ({idea}) => {
       <p className="card__text">{idea.description}</p>
 
       <div className="card__footer">
-        <p className="card__footer--target">£ {idea.target} Target </p>
+        <p className="card__footer--target">£ {idea.target.toLocaleString()} Target </p>
         <p>progress bar</p>
         <div className="card__footer--results">
           <div className="card__footer--results__raised">
-            <p style={{'fontWeight': '600'}}>{idea.raised}</p>
+            <p style={{'fontWeight': '600'}}>£ {idea.raised.toLocaleString()}</p>
             <p>Raised</p>
           </div>
           <div className="card__footer--results__equity">
@@ -26,7 +26,7 @@ const IdeaTile = ({idea}) => {
             <p>Equity</p>
           </div>
           <div className="card__footer--results__investors">
-            <p style={{'fontWeight': '600'}}>{idea.investors}</p>
+            <p style={{'fontWeight': '600'}}>{idea.investors.toLocaleString()}</p>
             <p>Investors</p>
           </div>
         </div>
