@@ -2,9 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const IdeaTile = ({idea}) => {
+  let percentageFunded = (idea.raised / idea.target * 100).toFixed(0);
   return (
     <div className="card card--big" >
-      <span className="card__overfunded">overfunded</span>
+      {
+        percentageFunded >= 100
+          ? <span className="card__overfunded">overfunded</span>
+          : ''
+      }
+
       <img className="card__star" src="../../../images/star.png"/>
       <div className="card__image" style={{'backgroundImage': `url( "${idea.image}" )`}} />
       <h2 className="card__title">{idea.title}</h2>
@@ -15,19 +21,24 @@ const IdeaTile = ({idea}) => {
 
       <div className="card__footer">
         <p className="card__footer--target">£ {idea.target.toLocaleString()} Target </p>
-        <p>progress bar</p>
+        <div className={percentageFunded >= 100
+          ? 'card__footer--progress card__footer--progress__funded'
+          : 'card__footer--progress'}
+        style={{'width': percentageFunded + '%'}}>
+          {percentageFunded}%
+        </div>
         <div className="card__footer--results">
           <div className="card__footer--results__raised">
-            <p style={{'fontWeight': '600'}}>£ {idea.raised.toLocaleString()}</p>
-            <p>Raised</p>
+            <p>£ {idea.raised.toLocaleString()}</p>
+            <span>Raised</span>
           </div>
           <div className="card__footer--results__equity">
-            <p style={{'fontWeight': '600'}}>{idea.equity}</p>
-            <p>Equity</p>
+            <p>{idea.equity}</p>
+            <span>Equity</span>
           </div>
           <div className="card__footer--results__investors">
-            <p style={{'fontWeight': '600'}}>{idea.investors.toLocaleString()}</p>
-            <p>Investors</p>
+            <p>{idea.investors.toLocaleString()}</p>
+            <span>Investors</span>
           </div>
         </div>
       </div>
