@@ -1,12 +1,26 @@
-import {List} from 'immutable';
-import {FETCH_IDEAS_RESPONSE} from '../actions';
+import {Map, List} from 'immutable';
+import {
+  FETCH_IDEAS_RESPONSE,
+  FILTERED_IDEAS
+} from '../actions';
 
-export const ideas = (state = List(), action) => {
+const initState = () => {
+  return Map({
+    'all': List(),
+    'filtered': List()
+  });
+};
+export const ideas = ((state = initState(), action) => {
   switch (action.type) {
   case FETCH_IDEAS_RESPONSE: {
-    return List(action.payload);
+    return state
+      .set('all', List(action.payload));
+  }
+  case FILTERED_IDEAS: {
+    return state
+      .set('filtered', List(action.payload));
   }
   default:
     return state;
   }
-};
+});

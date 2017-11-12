@@ -14,9 +14,13 @@ class IdeaList extends Component {
     return (
       <div className="ideas">
         {
-          this.props.ideas.map(
-            idea => <IdeaTile key={Math.random() * 100} idea={idea} />
-          )
+          this.props.filtered.size
+            ? this.props.filtered.map(
+              idea => <IdeaTile key={Math.random() * 100} idea={idea} />
+            )
+            : this.props.ideas.map(
+              idea => <IdeaTile key={Math.random() * 100} idea={idea} />
+            )
         }
       </div>
     );
@@ -25,12 +29,14 @@ class IdeaList extends Component {
 
 IdeaList.propTypes = {
   'ideas': PropTypes.object,
+  'filtered': PropTypes.object,
   'FetchIdeasRequest': PropTypes.func
 };
 
 const mapStateToProps = state => {
   return {
-    'ideas': state.get('ideas')
+    'ideas': state.get('ideas').get('all'),
+    'filtered': state.get('ideas').get('filtered')
   };
 };
 export default connect(mapStateToProps, {
