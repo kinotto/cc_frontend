@@ -22,12 +22,13 @@ class OrderBy extends Component {
     super();
     this.state = {
       'isOpenModal': false,
-      'modalType': ''
+      'modalType': '',
+      'selectedVal': MOST_RECENT_INVESTMENTS
     };
     this.changeOrder = this.changeOrder.bind(this);
   }
-  changeOrder() {
-    console.log('ciao');
+  changeOrder(val) {
+    this.setState({'selectedVal': val});
   }
   render() {
     return (
@@ -35,9 +36,9 @@ class OrderBy extends Component {
         <div className="orderBy__select">
           <Select
             name="form-field-name"
-            value={MOST_RECENT_INVESTMENTS}
+            value={this.state.selectedVal}
             options={options}
-            onChange={(val) => this.changeOrder(val)}
+            onChange={val => this.changeOrder(val)}
           />
         </div>
         <div className="orderBy__disclaimer">
@@ -62,7 +63,7 @@ class OrderBy extends Component {
         <Modal
           isOpen={this.state.isOpenModal}
           onRequestClose={() => this.setState({'isOpenModal': false})}
-          contentLabel="Example Modal"
+          contentLabel=""
           type={this.state.modalType}
         />
       </div>

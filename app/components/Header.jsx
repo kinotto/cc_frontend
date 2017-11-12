@@ -15,8 +15,10 @@ const Header = () => {
             <span className="icon-bar" />
             <span className="icon-bar" />
           </button>
-          <a className="navbar-brand" href="#">
-            <img src="../../images/crowdcube_logo.jpg" />
+          <a
+            className="navbar-brand"
+            href="https://www.crowdcube.com/">
+            <span />
           </a>
         </div>
 

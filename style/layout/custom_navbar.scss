@@ -5,12 +5,14 @@
   .navbar-brand{
 
     position: relative;
-    img{
+    span{
       position: absolute;
       position: absolute;
-      top: 14px;
+      background: url('../images/crowdcube_logo1.svg');
+      top: 17px;
+      background-size: 180px;
       width: 180px;
-      height: 35px;
+      height: 23px;
     }
   }
   .navbar-right{
