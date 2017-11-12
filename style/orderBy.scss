@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   margin: 10px;
+  margin-left: 28px;
+  margin-right: 31px;
   @media screen and (min-width: 600px){
     flex-direction: row;
     justify-content: space-between;

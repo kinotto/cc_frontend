@@ -3,12 +3,14 @@
   padding: 10px;
   border: none;
   .navbar-brand{
+
     position: relative;
     img{
       position: absolute;
-      top: 0;
-      width: 200px;
-      height: 60px;
+      position: absolute;
+      top: 14px;
+      width: 180px;
+      height: 35px;
     }
   }
   .navbar-right{
@@ -45,5 +47,6 @@
   }
   .navbar-toggle{
     margin-top: 17px;
+
   }
 }

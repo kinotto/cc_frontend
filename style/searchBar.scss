@@ -11,11 +11,12 @@
     }
 
     font-size: 18px;
-    margin-left: 10px;
+    margin-left: 30px;
     margin-right: 10px;
     &__investment{
       flex: 2;
       padding: 15px;
+      padding-left: 0;
       @media screen and (min-width: 600px){
         padding: 0;
       }
@@ -34,10 +35,12 @@
       }
       input{
         padding: 15px;
+        padding-left: 0;
         border: none;
         width: 100%;
         color: #eee;
         @media screen and (min-width: 600px){
+          padding-left: 15px;
           border: 1px solid #eee;
           border-top: none;
           border-bottom: none;
@@ -49,12 +52,17 @@
       }
       span{
         padding: 15px;
+        padding-left: 0;
+        @media screen and (min-width: 600px){
+          padding-left: 15px;
+        }
       }
       i{
         position: absolute;
-        right: 10px;
+        right: 22px;
         @media screen and (min-width: 600px){
           right: 45px;
+          right: 17px;
         }
       }
 
