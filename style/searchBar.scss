@@ -1,0 +1,66 @@
+.searchBar{
+  hr{
+    margin: 0;
+  }
+  &Flex{
+    display: flex;
+    flex-direction: column;
+    @media screen and (min-width: 600px){
+      align-items: center;
+      flex-direction: row;
+    }
+
+    font-size: 18px;
+    margin-left: 10px;
+    margin-right: 10px;
+    &__investment{
+      flex: 2;
+      padding: 15px;
+      @media screen and (min-width: 600px){
+        padding: 0;
+      }
+      font-size: 22px;
+    }
+    &__input{
+      flex: 1;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      //mobile first
+      @media screen and (min-width: 600px){
+        width: auto;
+      }
+      input{
+        padding: 15px;
+        border: none;
+        width: 100%;
+        color: #eee;
+        @media screen and (min-width: 600px){
+          border: 1px solid #eee;
+          border-top: none;
+          border-bottom: none;
+        }
+      }
+      input:focus{
+        outline: none;
+        color: black;
+      }
+      span{
+        padding: 15px;
+      }
+      i{
+        position: absolute;
+        right: 10px;
+        @media screen and (min-width: 600px){
+          right: 45px;
+        }
+      }
+
+    }
+
+  }
+
+
+}

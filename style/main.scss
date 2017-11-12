@@ -1,8 +1,12 @@
 //load bootstrap + fonts
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@import "node_modules/react-select/scss/default.scss";
 @import './custom_navbar';
 @import './card';
 @import './ideas';
+@import './searchBar';
+@import './orderBy';
 
 body{
   font-family: 'Roboto Condensed';

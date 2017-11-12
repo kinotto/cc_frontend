@@ -114,8 +114,8 @@
   &__star{
     position: absolute;
     z-index: 99;
-    max-width: 20px;
-    max-height: 20px;
+    max-width: 40px;
+    max-height: 40px;
     padding: 10px;
     background: white;
     border-radius: 5px;
@@ -184,6 +184,7 @@
 
     &--target{
       padding-left: 16px;
+      margin-top: 10px;
       font-weight: 500;
       flex: .3;
     }

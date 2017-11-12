@@ -1,7 +1,7 @@
 .navbar-default{
   background-color: white;
   padding: 10px;
-
+  border: none;
   .navbar-brand{
     position: relative;
     img{
@@ -12,6 +12,7 @@
     }
   }
   .navbar-right{
+
     a{
       cursor: pointer;
       padding-top: 5px;
