@@ -7,7 +7,7 @@ const IdeaTile = ({idea}) => {
     <div className="card card--big" onClick={() => window.open(idea.page, '_self')}>
       {
         percentageFunded >= 100
-          ? <span className="card__overfunded">overfunded</span>
+          ? <span className="card__overfunded">overfunding</span>
           : ''
       }
       <img
