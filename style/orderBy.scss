@@ -9,8 +9,10 @@
 
   &__select{
     width: 100%;
+    margin-bottom: 10px;
     @media screen and (min-width: 600px){
       width: 30%;
+      margin-bottom: 0;
     }
   }
 
