@@ -2,25 +2,40 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import IdeaTile from './IdeaTile';
 import PropTypes from 'prop-types';
+import {MOST_RECENT_INVESTMENTS} from '../../utilities/constants';
 import {
-  FetchIdeasRequest
+  FetchIdeasRequest,
+  FilterIdeasRequest
 } from '../../actions';
 
 class IdeaList extends Component {
+  constructor() {
+    super();
+    this.state = {
+      'ideas': []
+    };
+  }
   componentWillMount() {
     this.props.FetchIdeasRequest();
+  }
+  componentWillReceiveProps(newProps) {
+    if (newProps.ideas !== this.props.ideas) {
+      // only once at refresh
+      this.props.FilterIdeasRequest(MOST_RECENT_INVESTMENTS);
+    }
+    if (newProps.filtered !== this.props.filtered) {
+      this.setState({'ideas': newProps.filtered});
+    } else {
+      this.setState({'ideas': newProps.ideas});
+    }
   }
   render() {
     return (
       <div className="ideas">
         {
-          this.props.filtered.size
-            ? this.props.filtered.map(
-              idea => <IdeaTile key={Math.random() * 100} idea={idea} />
-            )
-            : this.props.ideas.map(
-              idea => <IdeaTile key={Math.random() * 100} idea={idea} />
-            )
+          this.state.ideas.map(
+            idea => <IdeaTile key={Math.random() * 100} idea={idea} />
+          )
         }
       </div>
     );
@@ -30,7 +45,8 @@ class IdeaList extends Component {
 IdeaList.propTypes = {
   'ideas': PropTypes.object,
   'filtered': PropTypes.object,
-  'FetchIdeasRequest': PropTypes.func
+  'FetchIdeasRequest': PropTypes.func,
+  'FilterIdeasRequest': PropTypes.func
 };
 
 const mapStateToProps = state => {
@@ -40,5 +56,6 @@ const mapStateToProps = state => {
   };
 };
 export default connect(mapStateToProps, {
-  FetchIdeasRequest
+  FetchIdeasRequest,
+  FilterIdeasRequest
 })(IdeaList);

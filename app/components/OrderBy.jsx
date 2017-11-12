@@ -9,6 +9,9 @@ import {
   RISK_WARNING_MODAL
 } from '../utilities/constants';
 import Modal from './modals/Modal';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import {FilterIdeasRequest} from '../actions';
 
 const options = [
   {'value': MOST_RECENT_INVESTMENTS, 'label': MOST_RECENT_INVESTMENTS},
@@ -27,8 +30,9 @@ class OrderBy extends Component {
     };
     this.changeOrder = this.changeOrder.bind(this);
   }
-  changeOrder(val) {
-    this.setState({'selectedVal': val});
+  changeOrder(order) {
+    this.setState({'selectedVal': order});
+    this.props.FilterIdeasRequest(order.value);
   }
   render() {
     return (
@@ -71,4 +75,9 @@ class OrderBy extends Component {
   }
 }
 
-export default OrderBy;
+OrderBy.propTypes = {
+  'FilterIdeasRequest': PropTypes.func
+};
+export default connect(null, {
+  FilterIdeasRequest
+})(OrderBy);

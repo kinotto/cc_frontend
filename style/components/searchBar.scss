@@ -38,7 +38,7 @@
         padding-left: 0;
         border: none;
         width: 100%;
-        color: #eee;
+        color: black;
         @media screen and (min-width: 600px){
           padding-left: 15px;
           border: 1px solid #eee;
@@ -60,6 +60,7 @@
       i{
         position: absolute;
         right: 22px;
+        cursor: pointer;
         @media screen and (min-width: 600px){
           right: 45px;
           right: 17px;

@@ -2,21 +2,17 @@ import React, {Component} from 'react';
 import {Observable} from 'rxjs';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {FilteredIdeas} from '../actions';
+import {FilterIdeasRequest} from '../actions';
 
 class SearchBar extends Component {
-  constructor(props) {
-    super(props);
-    this.search = this.search.bind(this);
-  }
   componentDidMount() {
     Observable.fromEvent(this.input, 'keyup')
       .debounceTime(200)
       .filter(evt => evt.keyCode === 13)
-      .subscribe(this.search);
+      .subscribe(this.props.FilterIdeasRequest);
   }
 
-  search(e) {
+  /* search(e) {
     let filteredIdeas;
     if (e.target.value) {
       filteredIdeas = this.props.ideas.filter(idea =>
@@ -27,9 +23,8 @@ class SearchBar extends Component {
     }
 
     this.props.FilteredIdeas(filteredIdeas);
-    e.preventDefault();
-  }
-  // onKeyPress={this.search}
+  }*/
+
   render() {
     return (
       <div className="searchBar">
@@ -46,7 +41,7 @@ class SearchBar extends Component {
             <i
               className="fa fa-search fa-sm"
               aria-hidden="true"
-              onClick={this.search}
+              onClick={() => this.props.FilterIdeasRequest({'target': this.input})}
             />
           </div>
           <div className="searchBarFlex__input">
@@ -61,7 +56,7 @@ class SearchBar extends Component {
 }
 
 SearchBar.propTypes = {
-  'FilteredIdeas': PropTypes.func,
+  'FilterIdeasRequest': PropTypes.func,
   'ideas': PropTypes.object
 };
 
@@ -71,5 +66,5 @@ const mapStateToProps = state => {
   };
 };
 export default connect(mapStateToProps, {
-  FilteredIdeas
+  FilterIdeasRequest
 })(SearchBar);

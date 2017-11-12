@@ -1,7 +1,7 @@
 import {Map, List} from 'immutable';
 import {
   FETCH_IDEAS_RESPONSE,
-  FILTERED_IDEAS
+  FILTER_IDEAS_RESPONSE
 } from '../actions';
 
 const initState = () => {
@@ -16,7 +16,7 @@ export const ideas = ((state = initState(), action) => {
     return state
       .set('all', List(action.payload));
   }
-  case FILTERED_IDEAS: {
+  case FILTER_IDEAS_RESPONSE: {
     return state
       .set('filtered', List(action.payload));
   }

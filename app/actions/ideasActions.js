@@ -2,9 +2,10 @@ import {makeActionCreator} from './makeActionCreator';
 
 export const FETCH_IDEAS_REQUEST = 'FETCH_IDEAS_REQUEST';
 export const FETCH_IDEAS_RESPONSE = 'FETCH_IDEAS_RESPONSE';
-export const FILTERED_IDEAS = 'FILTERED_IDEAS';
-
+export const FILTER_IDEAS_REQUEST = 'FILTER_IDEAS_REQUEST';
+export const FILTER_IDEAS_RESPONSE = 'FILTER_IDEAS_RESPONSE';
 
 export const FetchIdeasRequest = makeActionCreator(FETCH_IDEAS_REQUEST);
 export const FetchIdeasResponse = makeActionCreator(FETCH_IDEAS_RESPONSE);
-export const FilteredIdeas = makeActionCreator(FILTERED_IDEAS);
+export const FilterIdeasRequest = makeActionCreator(FILTER_IDEAS_REQUEST);
+export const FilterIdeasResponse = makeActionCreator(FILTER_IDEAS_RESPONSE);

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import moment from 'moment';
 const IdeaTile = ({idea}) => {
   let percentageFunded = (idea.raised / idea.target * 100).toFixed(0);
   return (
@@ -17,7 +17,9 @@ const IdeaTile = ({idea}) => {
       />
       <div className="card__image" style={{'backgroundImage': `url( "${idea.image}" )`}} />
       <h2 className="card__title">{idea.title}</h2>
-      <h3 className="card__daysLeft">{idea.daysLeft} days left</h3>
+      <h3 className="card__daysLeft">
+        {moment(idea.expires_at).diff(moment(), 'days')} days left
+      </h3>
       <img className="card__logo" src={idea.logo} />
       <span className="card__subtitle">{idea.daysLeft}</span>
       <p className="card__text">{idea.description}</p>
