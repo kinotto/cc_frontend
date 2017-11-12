@@ -12,7 +12,7 @@ class Footer extends Component {
   render() {
     return (
       <div className="footer">
-        <p className="footer__title">Risk warning</p>
+        <p className="footer__title footer__bold">Risk warning</p>
 
         <p>
         Investing in start-ups and early stage businesses involves risks, including
@@ -50,36 +50,82 @@ class Footer extends Component {
 
         <div className="footer__links">
           <div className="footer__links__group--onlyBigDevices">
-            <div>Support</div>
-            <div>Help Centre</div>
-            <div>Tax relief</div>
-            <div>Contact us</div>
+            <div className="footer__bold">Support</div>
+            <div><a href="https://www.crowdcube.com/help">Help Centre</a></div>
+            <div>
+              <a href="https://www.crowdcube.com/pg/eis-seis-tax-relief-overview-43">
+                Tax relief
+              </a>
+            </div>
+            <div><a href="https://www.crowdcube.com/contact">Contact us</a></div>
           </div>
           <div className="footer__links__group--onlyBigDevices">
-            <div>Learn more</div>
-            <div>Raising finance</div>
-            <div>Funded companies</div>
-            <div>Partnerships</div>
+            <div className="footer__bold">Learn more</div>
+            <div>
+              <a href="https://www.crowdcube.com/raising-finance">
+                Raising finance
+              </a>
+            </div>
+            <div>
+              <a href="https://www.crowdcube.com/companies">
+                Funded companies
+              </a>
+            </div>
+            <div>
+              <a href="https://www.crowdcube.com/partnerships">
+                Partnerships
+              </a>
+            </div>
           </div>
           <div className="footer__links__group--onlyBigDevices">
-            <div>Legal</div>
-            <div>Terms of use</div>
-            <div>Privacy policy</div>
-            <div>Risk warning</div>
+            <div className="footer__bold">Legal</div>
+            <div>
+              <a href="https://www.crowdcube.com/pg/terms-16">
+                Terms of use
+              </a>
+            </div>
+            <div>
+              <a href="https://www.crowdcube.com/pg/privacy-and-cookie-policy-17">
+              Privacy policy
+              </a>
+            </div>
+            <div>
+              <a href="https://www.crowdcube.com/pg/risk-36">
+                Risk warning
+              </a>
+            </div>
           </div>
           <div className="footer__links__group--onlyBigDevices">
-            <div>Team</div>
-            <div>About us</div>
-            <div>Carrers</div>
+            <div className="footer__bold">Team</div>
+            <div>
+              <a href="https://www.crowdcube.com/pg/crowdcube-inc-about-us-1">
+                About us
+              </a>
+            </div>
+            <div>
+              <a href="https://www.crowdcube.com/pg/jobs-37">Carrers</a>
+            </div>
           </div>
           <div className="footer__links__group">
-            <img src="../../images/app-store-badge.svg" />
+            <a href="https://itunes.apple.com/app/apple-store/id1130987804?pt=2225342&ct=crowdcube_footer&mt=8">
+              <img src="../../images/app-store-badge.svg" />
+            </a>
             <div className="footer__links__social">
-              <i className="fa fa-facebook" aria-hidden="true" />
-              <i className="fa fa-twitter" aria-hidden="true" />
-              <i className="fa fa-linkedin" aria-hidden="true" />
-              <i className="fa fa-google" aria-hidden="true" />
-              <i className="fa fa-instagram" aria-hidden="true" />
+              <a href="https://www.facebook.com/crowdcube">
+                <i className="fa fa-facebook" aria-hidden="true" />
+              </a>
+              <a href="https://twitter.com/Crowdcube">
+                <i className="fa fa-twitter" aria-hidden="true" />
+              </a>
+              <a href="https://www.linkedin.com/company/crowdcube-limited">
+                <i className="fa fa-linkedin" aria-hidden="true" />
+              </a>
+              <a href="https://plus.google.com/+crowdcube">
+                <i className="fa fa-google" aria-hidden="true" />
+              </a>
+              <a href="https://www.instagram.com/crowdcubeteam/">
+                <i className="fa fa-instagram" aria-hidden="true" />
+              </a>
             </div>
           </div>
         </div>
@@ -88,7 +134,9 @@ class Footer extends Component {
             Crowdcube Capital Ltd is authorised and regulated by the Financial Conduct
             Authority (No. 650205).
           </div>
-          <img src="../../images/crowdcube_logo2.svg" />
+          <a href="https://www.crowdcube.com/investments?">
+            <img src="../../images/crowdcube_logo2.svg" />
+          </a>
         </div>
 
         <Modal
