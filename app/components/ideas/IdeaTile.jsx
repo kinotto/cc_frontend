@@ -37,10 +37,12 @@ const IdeaTile = ({idea}) => {
             <p>£ {idea.raised.toLocaleString()}</p>
             <span>Raised</span>
           </div>
+          <div className="card__footer--results__bar" />
           <div className="card__footer--results__equity">
             <p>{idea.equity}</p>
             <span>Equity</span>
           </div>
+          <div className="card__footer--results__bar" />
           <div className="card__footer--results__investors">
             <p>{idea.investors.toLocaleString()}</p>
             <span>Investors</span>

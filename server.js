@@ -1,8 +1,10 @@
 //express server for prod environment , used in place of webpack
 const express = require('express');
+const path = require('path');
+
 let LOCAL_PORT = 3003;
 let app = express();
-app.use(express.static(__dirname));
+app.use('/', express.static(path.resolve(__dirname, 'build')));
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');

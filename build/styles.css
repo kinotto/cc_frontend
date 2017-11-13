@@ -624,13 +624,17 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: space-between; }
+      justify-content: space-around; }
+      .card__footer--results__bar {
+        border-right: 1px solid #e4e4e4;
+        width: 1px;
+        height: 60px; }
+      .card__footer--results__bar::before {
+        content: ""; }
       .card__footer--results__raised, .card__footer--results__equity, .card__footer--results__investors {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        box-shadow: 1px 0 0 #e4e4e4;
-        padding: 0 30px; }
+        align-items: center; }
         .card__footer--results__raised p, .card__footer--results__equity p, .card__footer--results__investors p {
           font-weight: 500;
           margin-bottom: 10px; }
@@ -778,7 +782,8 @@
   .filter--hidden {
     height: 0;
     padding: 0;
-    opacity: 0; }
+    opacity: 0;
+    overflow: hidden; }
 
 .orderBy {
   display: flex;
