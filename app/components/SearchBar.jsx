@@ -101,7 +101,10 @@ class SearchBar extends Component {
           </div>
           <div className="searchBarFlex__input">
             <span>
-              Filter (0)
+              Filter ({
+                this.state.filters.categories.length
+                + this.state.filters.stages.length
+              })
             </span>
             <i
               className={this.state.showFilterModal
