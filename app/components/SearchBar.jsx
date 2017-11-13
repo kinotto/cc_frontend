@@ -5,25 +5,18 @@ import PropTypes from 'prop-types';
 import {FilterIdeasRequest} from '../actions';
 
 class SearchBar extends Component {
+  constructor() {
+    super();
+    this.state = {
+      'showFilterModal': false
+    };
+  }
   componentDidMount() {
     Observable.fromEvent(this.input, 'keyup')
       .debounceTime(200)
       .filter(evt => evt.keyCode === 13)
       .subscribe(this.props.FilterIdeasRequest);
   }
-
-  /* search(e) {
-    let filteredIdeas;
-    if (e.target.value) {
-      filteredIdeas = this.props.ideas.filter(idea =>
-        idea.title.toUpperCase().indexOf(e.target.value.toUpperCase()) !== -1
-      );
-    } else {
-      filteredIdeas = this.props.ideas.toJS();
-    }
-
-    this.props.FilteredIdeas(filteredIdeas);
-  }*/
 
   render() {
     return (
@@ -45,11 +38,52 @@ class SearchBar extends Component {
             />
           </div>
           <div className="searchBarFlex__input">
-            <span>Filter (0)</span>
-            <i className="fa fa-plus fa-sm" aria-hidden="true" />
+            <span>
+              Filter (0)
+            </span>
+            <i
+              className={this.state.showFilterModal ? 'fa fa-minus fa-sm' : 'fa fa-plus fa-sm'}
+              aria-hidden="true"
+              onClick={() => this.setState({'showFilterModal': !this.state.showFilterModal})}
+            />
           </div>
         </div>
         <hr/>
+
+        <div className={this.state.showFilterModal
+          ? 'filter filter--visible'
+          : 'filter filter--hidden'}>
+          <div className="filter__title">Stage</div>
+          <div className="filter__group">
+            <div>Seed</div>
+            <div>Early</div>
+            <div>Growth</div>
+          </div>
+          <div className="filter__title">Sector</div>
+          <div className="filter__group">
+            <div>Automotive</div>
+            <div>Business services</div>
+            <div>Consumer goods</div>
+            <div>Consumer internet</div>
+            <div>Education</div>
+            <div>Entartainment and media</div>
+            <div>Fitness & sports</div>
+          </div>
+          <div className="filter__group">
+            <div>Food & beverage (FMCG)</div>
+            <div>Healthtech & healthcare</div>
+            <div>IT & Telecommunications</div>
+            <div>Leisure and tourism</div>
+            <div>Manufacturing</div>
+            <div>Restaurants, cafes and bars</div>
+          </div>
+          <div className="filter__buttonGroup">
+            <div className="filter__buttonGroup--apply">Apply filters</div>
+            <div className="filter__buttonGroup--clear">Clear filters</div>
+          </div>
+        </div>
+
+
       </div>
     );
   }

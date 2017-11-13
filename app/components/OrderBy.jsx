@@ -36,32 +36,34 @@ class OrderBy extends Component {
   }
   render() {
     return (
-      <div className="orderBy">
-        <div className="orderBy__select">
-          <Select
-            name="form-field-name"
-            value={this.state.selectedVal}
-            options={options}
-            onChange={val => this.changeOrder(val)}
-          />
-        </div>
-        <div className="orderBy__disclaimer">
+      <div className="sort">
+        <div className="orderBy">
+          <div className="orderBy__select">
+            <Select
+              name="form-field-name"
+              value={this.state.selectedVal}
+              options={options}
+              onChange={val => this.changeOrder(val)}
+            />
+          </div>
+          <div className="orderBy__disclaimer">
           Capital at Risk. Please read our
-          <span
-            className="orderBy__disclaimer--orange"
-            onClick={() => {
-              this.setState({'isOpenModal': true, 'modalType': RISK_WARNING_MODAL});
-            }}>
-            {' risk warning '}
-          </span>
+            <span
+              className="orderBy__disclaimer--orange"
+              onClick={() => {
+                this.setState({'isOpenModal': true, 'modalType': RISK_WARNING_MODAL});
+              }}>
+              {' risk warning '}
+            </span>
           and
-          <span
-            className="orderBy__disclaimer--orange"
-            onClick={() => {
-              this.setState({'isOpenModal': true, 'modalType': DISCLAIMER_MODAL});
-            }}>
-            {' disclaimer '}
-          </span>
+            <span
+              className="orderBy__disclaimer--orange"
+              onClick={() => {
+                this.setState({'isOpenModal': true, 'modalType': DISCLAIMER_MODAL});
+              }}>
+              {' disclaimer '}
+            </span>
+          </div>
         </div>
 
         <Modal
