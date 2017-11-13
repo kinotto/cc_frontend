@@ -2,14 +2,24 @@ import React, {Component} from 'react';
 import {Observable} from 'rxjs';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {FilterIdeasRequest} from '../actions';
+import {
+  FilterIdeasRequest,
+  FetchCategoriesRequest
+} from '../actions';
+import {STAGE} from '../utilities/constants';
 
 class SearchBar extends Component {
   constructor() {
     super();
+    this.addRemoveFilter = this.addRemoveFilter.bind(this);
     this.state = {
-      'showFilterModal': false
+      'showFilterModal': false,
+      'filters': [],
+      'seeds': []
     };
+  }
+  componentWillMount() {
+    this.props.FetchCategoriesRequest();
   }
   componentDidMount() {
     Observable.fromEvent(this.input, 'keyup')
@@ -18,6 +28,35 @@ class SearchBar extends Component {
       .subscribe(this.props.FilterIdeasRequest);
   }
 
+
+  // add or remove seed/category from list of categories for search
+  addRemoveFilter(filter) {
+    let FILTER_TYPE;
+    if (filter.categoryCode) {
+      // is a category
+      FILTER_TYPE = 'filters';
+    } else {
+      // is a seed
+      FILTER_TYPE = 'seeds';
+    }
+
+    let indexOfFilter = this.state[FILTER_TYPE].indexOf(filter);
+    if (indexOfFilter === -1) {
+      // not present, let's add it
+      this.setState({
+        [FILTER_TYPE]: [
+          ...this.state[FILTER_TYPE], filter
+        ]
+      });
+    } else {
+      // already present, remove it
+      let updatedFilters = this.state[FILTER_TYPE]
+        .filter((el, index) => index !== indexOfFilter);
+      this.setState({
+        [FILTER_TYPE]: updatedFilters
+      });
+    }
+  }
   render() {
     return (
       <div className="searchBar">
@@ -42,9 +81,13 @@ class SearchBar extends Component {
               Filter (0)
             </span>
             <i
-              className={this.state.showFilterModal ? 'fa fa-minus fa-sm' : 'fa fa-plus fa-sm'}
+              className={this.state.showFilterModal
+                ? 'fa fa-minus fa-sm'
+                : 'fa fa-plus fa-sm'}
               aria-hidden="true"
-              onClick={() => this.setState({'showFilterModal': !this.state.showFilterModal})}
+              onClick={() => this.setState({
+                'showFilterModal': !this.state.showFilterModal
+              })}
             />
           </div>
         </div>
@@ -55,27 +98,29 @@ class SearchBar extends Component {
           : 'filter filter--hidden'}>
           <div className="filter__title">Stage</div>
           <div className="filter__group">
-            <div>Seed</div>
-            <div>Early</div>
-            <div>Growth</div>
+            {
+              Object.keys(STAGE).map(key =>
+                <div
+                  key={Math.random() * 100}
+                  className={this.state.seeds.indexOf(STAGE[key]) !== -1
+                    ? 'selected' :
+                    ''}
+                  onClick={() => this.addRemoveFilter(STAGE[key])}>
+                  {STAGE[key]}
+                </div>
+              )
+            }
           </div>
           <div className="filter__title">Sector</div>
           <div className="filter__group">
-            <div>Automotive</div>
-            <div>Business services</div>
-            <div>Consumer goods</div>
-            <div>Consumer internet</div>
-            <div>Education</div>
-            <div>Entartainment and media</div>
-            <div>Fitness & sports</div>
-          </div>
-          <div className="filter__group">
-            <div>Food & beverage (FMCG)</div>
-            <div>Healthtech & healthcare</div>
-            <div>IT & Telecommunications</div>
-            <div>Leisure and tourism</div>
-            <div>Manufacturing</div>
-            <div>Restaurants, cafes and bars</div>
+            {this.props.categories.map(cat =>
+              <div
+                key={cat.categoryCode}
+                className={this.state.filters.indexOf(cat) !== -1 ? 'selected' : ''}
+                onClick={() => this.addRemoveFilter(cat)}
+              >{cat.description}
+              </div>
+            )}
           </div>
           <div className="filter__buttonGroup">
             <div className="filter__buttonGroup--apply">Apply filters</div>
@@ -91,14 +136,18 @@ class SearchBar extends Component {
 
 SearchBar.propTypes = {
   'FilterIdeasRequest': PropTypes.func,
-  'ideas': PropTypes.object
+  'FetchCategoriesRequest': PropTypes.func,
+  'ideas': PropTypes.object,
+  'categories': PropTypes.object
 };
 
 const mapStateToProps = state => {
   return {
-    'ideas': state.get('ideas').get('all')
+    'ideas': state.get('ideas').get('all'),
+    'categories': state.get('ideas').get('categories')
   };
 };
 export default connect(mapStateToProps, {
-  FilterIdeasRequest
+  FilterIdeasRequest,
+  FetchCategoriesRequest
 })(SearchBar);

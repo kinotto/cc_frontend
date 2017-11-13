@@ -101,6 +101,10 @@
       border-radius: 5px;
       cursor: pointer;
     }
+    div.selected{
+      color: white;
+      background: black;
+    }
   }
   &__buttonGroup{
     display: flex;

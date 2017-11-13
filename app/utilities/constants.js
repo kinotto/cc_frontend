@@ -5,3 +5,9 @@ export const AMOUNT_RAISED = 'Amount raised';
 
 export const DISCLAIMER_MODAL = 'DISCLAIMER_MODAL';
 export const RISK_WARNING_MODAL = 'RISK_WARNING_MODAL';
+
+export const STAGE = {
+  'SEED': 'Seed',
+  'EARLY': 'Early',
+  'GROWTH': 'Growth'
+};
