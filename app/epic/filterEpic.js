@@ -1,6 +1,7 @@
 import 'rxjs';
 import {
   FILTER_IDEAS_REQUEST,
+  FILTER_IDEAS_BY_CATEGORY_REQUEST,
   FilterIdeasResponse
 } from '../actions';
 import {
@@ -36,6 +37,7 @@ const sort = (ideaState, clb) => {
 
 
 const filterIdeas = (action$, store) => {
+  // filter by select
   return action$
     .ofType(FILTER_IDEAS_REQUEST)
     .map((action) => {
@@ -74,7 +76,30 @@ const filterIdeas = (action$, store) => {
     });
 };
 
+const filterByCategoriesAndSeeds = (action$, store) => {
+  return action$
+    .ofType(FILTER_IDEAS_BY_CATEGORY_REQUEST)
+    .map(action => {
+      let filters = action.payload;
+
+      let ideas = store.getState().get('ideas').get('all');
+
+      let newFilteredIdeas = ideas.filter(idea =>
+        // must have all the categories in the filter
+        filters.categories
+          .every(cat => idea.categories.indexOf(cat.categoryCode) !== -1)
+        &&
+        // and all the stages in the filter
+        filters.stages
+          .every(stage => idea.stage === stage)
+      );
+
+      return FilterIdeasResponse(newFilteredIdeas);
+    });
+};
+
 
 export const filterEpic = [
-  filterIdeas
+  filterIdeas,
+  filterByCategoriesAndSeeds
 ];

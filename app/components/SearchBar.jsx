@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   FilterIdeasRequest,
-  FetchCategoriesRequest
+  FetchCategoriesRequest,
+  FilterIdeasByCategoryRequest
 } from '../actions';
 import {STAGE} from '../utilities/constants';
 
@@ -12,10 +13,14 @@ class SearchBar extends Component {
   constructor() {
     super();
     this.addRemoveFilter = this.addRemoveFilter.bind(this);
+    this.applyFilters = this.applyFilters.bind(this);
+    this.clearFilters = this.clearFilters.bind(this);
     this.state = {
       'showFilterModal': false,
-      'filters': [],
-      'seeds': []
+      'filters': {
+        'categories': [],
+        'stages': []
+      }
     };
   }
   componentWillMount() {
@@ -28,32 +33,50 @@ class SearchBar extends Component {
       .subscribe(this.props.FilterIdeasRequest);
   }
 
+  applyFilters() {
+    this.props.FilterIdeasByCategoryRequest(this.state.filters);
+    this.setState({'showFilterModal': false});
+  }
+  clearFilters() {
+    this.setState({
+      'filters': {
+        'categories': [],
+        'stages': []
+      }
+    });
+  }
 
-  // add or remove seed/category from list of categories for search
+  // add or remove stage/category from the list of filters for a subsequent search
   addRemoveFilter(filter) {
     let FILTER_TYPE;
     if (filter.categoryCode) {
       // is a category
-      FILTER_TYPE = 'filters';
+      FILTER_TYPE = 'categories';
     } else {
-      // is a seed
-      FILTER_TYPE = 'seeds';
+      // is a stage
+      FILTER_TYPE = 'stages';
     }
 
-    let indexOfFilter = this.state[FILTER_TYPE].indexOf(filter);
+    let indexOfFilter = this.state.filters[FILTER_TYPE].indexOf(filter);
     if (indexOfFilter === -1) {
       // not present, let's add it
       this.setState({
-        [FILTER_TYPE]: [
-          ...this.state[FILTER_TYPE], filter
-        ]
+        'filters': {
+          ...this.state.filters,
+          [FILTER_TYPE]: [
+            ...this.state.filters[FILTER_TYPE], filter
+          ]
+        }
       });
     } else {
       // already present, remove it
-      let updatedFilters = this.state[FILTER_TYPE]
+      let updatedFilters = this.state.filters[FILTER_TYPE]
         .filter((el, index) => index !== indexOfFilter);
       this.setState({
-        [FILTER_TYPE]: updatedFilters
+        'filters': {
+          ...this.state.filters,
+          [FILTER_TYPE]: updatedFilters
+        }
       });
     }
   }
@@ -102,7 +125,7 @@ class SearchBar extends Component {
               Object.keys(STAGE).map(key =>
                 <div
                   key={Math.random() * 100}
-                  className={this.state.seeds.indexOf(STAGE[key]) !== -1
+                  className={this.state.filters.stages.indexOf(STAGE[key]) !== -1
                     ? 'selected' :
                     ''}
                   onClick={() => this.addRemoveFilter(STAGE[key])}>
@@ -116,15 +139,26 @@ class SearchBar extends Component {
             {this.props.categories.map(cat =>
               <div
                 key={cat.categoryCode}
-                className={this.state.filters.indexOf(cat) !== -1 ? 'selected' : ''}
+                className={this.state.filters.categories
+                  .indexOf(cat) !== -1
+                  ? 'selected'
+                  : ''}
                 onClick={() => this.addRemoveFilter(cat)}
               >{cat.description}
               </div>
             )}
           </div>
           <div className="filter__buttonGroup">
-            <div className="filter__buttonGroup--apply">Apply filters</div>
-            <div className="filter__buttonGroup--clear">Clear filters</div>
+            <div
+              onClick={() => this.applyFilters()}
+              className="filter__buttonGroup--apply">
+              Apply filters
+            </div>
+            <div
+              onClick={() => this.clearFilters()}
+              className="filter__buttonGroup--clear">
+              Clear filters
+            </div>
           </div>
         </div>
 
@@ -137,6 +171,7 @@ class SearchBar extends Component {
 SearchBar.propTypes = {
   'FilterIdeasRequest': PropTypes.func,
   'FetchCategoriesRequest': PropTypes.func,
+  'FilterIdeasByCategoryRequest': PropTypes.func,
   'ideas': PropTypes.object,
   'categories': PropTypes.object
 };
@@ -149,5 +184,6 @@ const mapStateToProps = state => {
 };
 export default connect(mapStateToProps, {
   FilterIdeasRequest,
-  FetchCategoriesRequest
+  FetchCategoriesRequest,
+  FilterIdeasByCategoryRequest
 })(SearchBar);
