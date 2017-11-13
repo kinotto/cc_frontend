@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --progress --profile --colors --display-error-details",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "postinstall": "npm run build"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
