@@ -54,6 +54,10 @@
         box-shadow: 0 0 5px #92c9e7;
         background: #fafafa;
         outline: 0;
+        @media screen and (max-width: 600px){
+          padding-left: 4px;
+          margin-right: 12px;
+        }  
       }
       span{
         padding: 15px;
