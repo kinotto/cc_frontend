@@ -57,7 +57,7 @@
         @media screen and (max-width: 600px){
           padding-left: 4px;
           margin-right: 12px;
-        }  
+        }
       }
       span{
         padding: 15px;
@@ -118,9 +118,10 @@
   &__buttonGroup{
     display: flex;
     flex-direction: row;
+    align-items: center;
     margin-top: 30px;
     &--clear{
-      border: 2px solid #ccc;
+      border: 2px solid #ccc !important;
       background: #ccc;
       font-size: 17px;
       border: #ccc;
