@@ -1,6 +1,7 @@
 .navbar-default{
   background-color: white;
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   border: none;
   .navbar-brand{
 
@@ -15,6 +16,9 @@
       height: 23px;
     }
   }
+  .navbar-collapse{
+    margin: 0 -10px;
+  }
   .navbar-right{
 
     a{
@@ -22,7 +26,10 @@
       padding-top: 5px;
       margin-top: 16px;
       &.current{
-        padding: 7px;
+        padding: 7px 15px;
+        @media screen and (min-width: 600px){
+          padding: 7px;
+        }
         margin-top: 12px;
         border: 2px solid #29383c;
         border-radius: 3px;
