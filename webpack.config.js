@@ -1,14 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const nodeExternals = require('webpack-node-externals');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+//const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const PORT = process.env.PORT || 3003;
 
 module.exports = {
-    //target: 'node',
-    //externals: [nodeExternals()]
     entry: './app/index.jsx',
     output: {
       publicPath: "/",
@@ -69,6 +67,16 @@ module.exports = {
         extensions: ['.js', '.jsx']
     },
     plugins: [
+        //set env variable to production to reduce bundle size, only for prod
+        /*new webpack.DefinePlugin({
+          'process.env': {
+            'NODE_ENV': JSON.stringify('production')
+          }
+        }),*/
+
+        //minification -> reduce the bundle , only for prod
+        /*new UglifyJSPlugin(),*/
+
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
         new ExtractTextPlugin({
