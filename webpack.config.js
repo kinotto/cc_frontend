@@ -68,14 +68,14 @@ module.exports = {
     },
     plugins: [
         //set env variable to production to reduce bundle size, only for prod
-        /*new webpack.DefinePlugin({
+        new webpack.DefinePlugin({
           'process.env': {
             'NODE_ENV': JSON.stringify('production')
           }
-        }),*/
+        }),
 
         //minification -> reduce the bundle , only for prod
-        /*new UglifyJSPlugin(),*/
+        //new UglifyJSPlugin(),
 
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
