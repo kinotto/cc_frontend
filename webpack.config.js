@@ -75,7 +75,7 @@ module.exports = {
         }),
 
         //minification -> reduce the bundle , only for prod
-        //new UglifyJSPlugin(),
+        new UglifyJSPlugin(),
 
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
