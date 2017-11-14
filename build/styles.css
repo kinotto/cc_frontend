@@ -444,13 +444,11 @@
           margin-top: 40px; } }
 
 @font-face {
-  font-family: Helvetica;
-  src: url(/fonts/Helvetica-Condensed.otf); }
+  font-family: Helvetica; }
 
 @font-face {
   font-family: Helvetica;
-  font-weight: bold;
-  src: url(/fonts/Helvetica-Condensed.otf); }
+  font-weight: bold; }
 
 .card {
   will-change: transform;
@@ -849,3 +847,5 @@ body {
   font-family: 'Roboto Condensed';
   font-style: normal;
   font-weight: 400; }
+
+/*# sourceMappingURL=styles.css.map*/

@@ -1,16 +1,21 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const nodeExternals = require('webpack-node-externals');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 const PORT = process.env.PORT || 3003;
 
 module.exports = {
+    //target: 'node',
+    //externals: [nodeExternals()]
     entry: './app/index.jsx',
     output: {
       publicPath: "/",
       path: path.resolve(__dirname, 'build'),
       filename: 'bundle.js'
     },
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
     module: {
       rules: [
         {
@@ -46,10 +51,10 @@ module.exports = {
               fallback: "style-loader" // used when css not extracted
           }))
         },
-        {
+        /*{
           test: /\.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
           loader: 'file-loader?name=fonts/[name].[ext]'
-        },
+        },*/
         {
           test: /\.(jpe?g|png|gif|svg)$/i,
           loader: "file-loader?name=images/[name].[ext]"
