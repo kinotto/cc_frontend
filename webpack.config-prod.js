@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const PORT = process.env.PORT || 3003;
 
@@ -12,7 +12,7 @@ module.exports = {
     'path': path.resolve(__dirname, 'build'),
     'filename': 'bundle.js'
   },
-  'devtool': 'eval-source-map',
+  'devtool': 'source-map',
   'module': {
     'rules': [
       {
@@ -66,6 +66,16 @@ module.exports = {
     'extensions': ['.js', '.jsx']
   },
   'plugins': [
+    // set env variable to production to reduce bundle size, only for prod
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+
+    // minification -> reduce the bundle , only for prod
+    new UglifyJSPlugin(),
+
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new ExtractTextPlugin({
