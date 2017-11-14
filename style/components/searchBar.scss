@@ -5,6 +5,7 @@
   &Flex{
     display: flex;
     flex-direction: column;
+
     @media screen and (min-width: 600px){
       align-items: center;
       flex-direction: row;
@@ -24,6 +25,7 @@
     }
     &__input{
       flex: 1;
+      font-weight: 200;
       position: relative;
       display: flex;
       justify-content: space-between;
@@ -47,8 +49,11 @@
         }
       }
       input:focus{
-        outline: none;
         color: black;
+        border-color: #92c9e7;
+        box-shadow: 0 0 5px #92c9e7;
+        background: #fafafa;
+        outline: 0;
       }
       span{
         padding: 15px;
